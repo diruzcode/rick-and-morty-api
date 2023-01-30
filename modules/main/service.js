@@ -5,35 +5,19 @@ const {
   update,
   remove,
   findById,
-} = require("./repository");
+} = require('./repository');
 
-const store = async (character) => {
-  const response = await create(character);
-  return response;
-};
+const store = async (character) => await create(character);
 
-const updateById = async (characterId, character) => {
-  const response = await update(characterId, character);
-  return response;
-};
+const updateById = async (characterId, character) => await update(characterId, character);
 
-const getById = async (characterId) => {
-  return await findById(characterId);
-};
+const getById = async (characterId) => await findById(characterId);
 
-const getAll = async () => {
-  const response = await findAll();
-  return response;
-};
+const getAll = async () => await findAll();
 
-const search = async (params) => {
-  const response = await find(params.name, params.gender);
-  return response;
-};
+const search = async (params) => await find(params.name, params.gender);
 
-const removeById = async (characterId) => {
-  return await remove(characterId);
-};
+const removeById = async (characterId) => await remove(characterId);
 
 module.exports = {
   store,

@@ -64,9 +64,10 @@
  *          image: https://rickandmortyapi.com/api/character/avatar/7.jpeg
  */
 
-const express = require("express");
+const express = require('express');
+
 const router = express.Router();
-const controller = require("../modules/main/controller");
+const controller = require('../modules/main/controller');
 
 /**
  * @swagger
@@ -93,7 +94,7 @@ const controller = require("../modules/main/controller");
  *               schema:
  *                 $ref: '#/components/schemas/Characters'
  */
-router.get("/characters", controller.list);
+router.get('/characters', controller.list);
 
 /**
  * @swagger
@@ -118,7 +119,7 @@ router.get("/characters", controller.list);
  *         "404":
  *           description: Characters not found.
  */
-router.get("/characters/:id", controller.get);
+router.get('/characters/:id', controller.get);
 
 /**
  * @swagger
@@ -140,7 +141,7 @@ router.get("/characters/:id", controller.get);
  *             schema:
  *               $ref: '#/components/schemas/Characters'
  */
-router.post("/characters", controller.create);
+router.post('/characters', controller.create);
 
 /**
  * @swagger
@@ -167,7 +168,7 @@ router.post("/characters", controller.create);
  *         "404":
  *           description: Character not found.
  */
-router.put("/characters/:id", controller.update);
+router.put('/characters/:id', controller.update);
 
 /**
  * @swagger
@@ -188,6 +189,6 @@ router.put("/characters/:id", controller.update);
  *          "404":
  *            description: Character not found.
  */
-router.delete("/characters/:id", controller.remove);
+router.delete('/characters/:id', controller.remove);
 
 module.exports = router;

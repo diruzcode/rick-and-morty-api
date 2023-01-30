@@ -1,10 +1,10 @@
-const { getPool } = require("../../services/db/postgres");
-var { nanoid } = require("nanoid");
+const { nanoid } = require('nanoid');
+const { getPool } = require('../../services/db/postgres');
 
 const create = async (character) => {
   const pool = getPool();
   try {
-    await pool.query("BEGIN");
+    await pool.query('BEGIN');
     await pool.query(
       `INSERT INTO characters(
         id,
@@ -27,15 +27,13 @@ const create = async (character) => {
         character.origin,
         character.location,
         character.image,
-      ]
+      ],
     );
-    await pool.query("COMMIT");
+    await pool.query('COMMIT');
   } catch (e) {
-    await pool.query("ROLLBACK");
+    await pool.query('ROLLBACK');
     throw new Error(e);
   }
-
-  return;
 };
 
 const update = async (characterId, character) => {
@@ -55,7 +53,7 @@ const update = async (characterId, character) => {
 
 const find = async (name, gender) => {
   const pool = getPool({ camelCase: true });
-  let sql = "SELECT * FROM characters WHERE ";
+  let sql = 'SELECT * FROM characters WHERE ';
   if (name) {
     sql = `${sql} name LIKE '%${name}%'`;
   }
@@ -73,14 +71,14 @@ const find = async (name, gender) => {
 const findById = async (characterId) => {
   const pool = getPool({ camelCase: true });
   const { rows } = await pool.query(
-    "SELECT * FROM characters WHERE id = $1 AND deleted_at IS NULL",
-    [characterId]
+    'SELECT * FROM characters WHERE id = $1 AND deleted_at IS NULL',
+    [characterId],
   );
   if (rows.length === 0) {
-    let e = new Error();
-    e.name = "NOT_FOUND";
+    const e = new Error();
+    e.name = 'NOT_FOUND';
     e.httpStatus = 404;
-    e.message = "Up!! we not found the resource";
+    e.message = 'Up!! we not found the resource';
     throw e;
   }
   return rows[0];
@@ -89,7 +87,7 @@ const findById = async (characterId) => {
 const findAll = async () => {
   const pool = getPool({ camelCase: true });
   const { rows } = await pool.query(
-    "SELECT * FROM characters WHERE deleted_at IS NULL;"
+    'SELECT * FROM characters WHERE deleted_at IS NULL;',
   );
   return rows;
 };
@@ -97,8 +95,8 @@ const findAll = async () => {
 const remove = async (characterId) => {
   const pool = getPool({ camelCase: true });
   const { rows } = await pool.query(
-    "UPDATE characters SET deleted_at = NOW() WHERE id = $1;",
-    [characterId]
+    'UPDATE characters SET deleted_at = NOW() WHERE id = $1;',
+    [characterId],
   );
   return rows[0];
 };

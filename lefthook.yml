@@ -5,6 +5,11 @@
 pre-commit:
   parallel: true
   commands:
-    eslint:
+    tests:
+      files: git diff --name-only @{push}
       glob: "*.{js}"
-      run: npm run lint {staged_files}
+      run: npm run test {files}
+    # tests_e2e:
+    #   files: git diff --name-only @{push}
+    #   glob: "*.{js}"
+    #   run: npm run test:e2e {files}
