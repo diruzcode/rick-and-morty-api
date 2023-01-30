@@ -1,0 +1,50 @@
+env:
+  node: true
+  commonjs: true
+  es6: true
+  jest: true
+extends: ["airbnb-base"]
+globals:
+  Atomics: readonly
+  SharedArrayBuffer: readonly
+  jest: readonly
+parserOptions:
+  ecmaVersion: 2020
+# TODO: Errors for resolve alias
+settings:
+  import/resolver: webpack
+  ignorePatterns: ["**/*.min.js"]
+rules:
+  import/no-unresolved:
+    - warn
+  lines-between-class-members:
+    - error
+    - always
+    - exceptAfterSingleLine: true
+  no-unused-expressions:
+    - 1
+    - allowTernary: true
+  no-console:
+    - warn
+    - allow:
+        - error
+        - info
+        - time
+        - timeEnd
+  no-param-reassign:
+    - error
+    - ignorePropertyModificationsFor:
+        - context
+  no-underscore-dangle:
+    - error
+    - allowAfterThis: true
+  no-throw-literal: 0
+  max-len:
+    - error
+    - {"code": 130, "comments": 130 , "ignoreUrls": true}
+  object-curly-newline:
+    - error
+    - multiline: true
+      minProperties : 5
+      consistent : true
+plugins: ["json"]
