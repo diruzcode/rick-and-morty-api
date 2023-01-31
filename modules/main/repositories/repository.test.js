@@ -1,7 +1,7 @@
-const { getPool } = require('../../services/db/postgres');
+const { getPool } = require('../../../services/db/postgres');
 const Repository = require('./repository');
 
-jest.mock('../../services/db/postgres', () => {
+jest.mock('../../../services/db/postgres', () => {
   const pool = {
     connect() {
       return { query: jest.fn(), release: jest.fn() };
@@ -46,9 +46,7 @@ describe('findAll', () => {
 
     await Repository.findAll();
 
-    expect(pool.query).toHaveBeenCalledWith(
-      'SELECT * FROM characters WHERE deleted_at IS NULL;',
-    );
+    expect(pool.query).toHaveBeenCalledWith('SELECT * FROM characters WHERE deleted_at IS NULL;');
 
     expect(pool.query).toHaveBeenCalledTimes(1);
   });

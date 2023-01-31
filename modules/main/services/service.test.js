@@ -1,9 +1,9 @@
 const { describe, it, expect } = require('@jest/globals');
-const { findAll, findById } = require('./repository');
+const { findAll, findById } = require('../repositories/repository');
 const { getById, getAll } = require('./service');
 
-jest.mock('./repository', () => ({
-  ...jest.requireActual('./repository'),
+jest.mock('../repositories/repository', () => ({
+  ...jest.requireActual('../repositories/repository'),
   findAll: jest.fn(),
   findById: jest.fn(),
 }));

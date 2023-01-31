@@ -1,5 +1,5 @@
 const { nanoid } = require('nanoid');
-const { getPool } = require('../../services/db/postgres');
+const { getPool } = require('../../../services/db/postgres');
 
 const create = async (character) => {
   const pool = getPool();
@@ -86,18 +86,15 @@ const findById = async (characterId) => {
 
 const findAll = async () => {
   const pool = getPool({ camelCase: true });
-  const { rows } = await pool.query(
-    'SELECT * FROM characters WHERE deleted_at IS NULL;',
-  );
+  const { rows } = await pool.query('SELECT * FROM characters WHERE deleted_at IS NULL;');
   return rows;
 };
 
 const remove = async (characterId) => {
   const pool = getPool({ camelCase: true });
-  const { rows } = await pool.query(
-    'UPDATE characters SET deleted_at = NOW() WHERE id = $1;',
-    [characterId],
-  );
+  const { rows } = await pool.query('UPDATE characters SET deleted_at = NOW() WHERE id = $1;', [
+    characterId,
+  ]);
   return rows[0];
 };
 

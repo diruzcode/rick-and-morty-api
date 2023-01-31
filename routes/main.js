@@ -67,7 +67,11 @@
 const express = require('express');
 
 const router = express.Router();
-const controller = require('../modules/main/controller');
+const { createCharacter } = require('../modules/main/functions/createCharacter.function');
+const { deleteCharacter } = require('../modules/main/functions/deleteCharacter.function');
+const { getCharacterById } = require('../modules/main/functions/getCharacterById.function');
+const { getCharacters } = require('../modules/main/functions/getCharacters.function');
+const { updateCharacterById } = require('../modules/main/functions/updateCharacterById.function');
 
 /**
  * @swagger
@@ -94,7 +98,7 @@ const controller = require('../modules/main/controller');
  *               schema:
  *                 $ref: '#/components/schemas/Characters'
  */
-router.get('/characters', controller.list);
+router.get('/characters', getCharacters);
 
 /**
  * @swagger
@@ -119,7 +123,7 @@ router.get('/characters', controller.list);
  *         "404":
  *           description: Characters not found.
  */
-router.get('/characters/:id', controller.get);
+router.get('/characters/:id', getCharacterById);
 
 /**
  * @swagger
@@ -141,7 +145,7 @@ router.get('/characters/:id', controller.get);
  *             schema:
  *               $ref: '#/components/schemas/Characters'
  */
-router.post('/characters', controller.create);
+router.post('/characters', createCharacter);
 
 /**
  * @swagger
@@ -168,7 +172,7 @@ router.post('/characters', controller.create);
  *         "404":
  *           description: Character not found.
  */
-router.put('/characters/:id', controller.update);
+router.put('/characters/:id', updateCharacterById);
 
 /**
  * @swagger
@@ -189,6 +193,6 @@ router.put('/characters/:id', controller.update);
  *          "404":
  *            description: Character not found.
  */
-router.delete('/characters/:id', controller.remove);
+router.delete('/characters/:id', deleteCharacter);
 
 module.exports = router;

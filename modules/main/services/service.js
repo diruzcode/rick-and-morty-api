@@ -1,6 +1,6 @@
 const {
   findAll, find, create, update, remove, findById,
-} = require('./repository');
+} = require('../repositories/repository');
 
 const store = async (character) => create(character);
 
