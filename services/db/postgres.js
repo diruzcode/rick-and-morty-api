@@ -1,5 +1,5 @@
-const { Pool } = require("pg");
-const pgCamelCase = require("pg-camelcase");
+const { Pool } = require('pg');
+const pgCamelCase = require('pg-camelcase');
 
 let pool;
 let revertCamelCase;

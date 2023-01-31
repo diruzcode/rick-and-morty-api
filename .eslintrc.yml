@@ -10,10 +10,6 @@ globals:
   jest: readonly
 parserOptions:
   ecmaVersion: 2020
-# TODO: Errors for resolve alias
-settings:
-  import/resolver: webpack
-  ignorePatterns: ["**/*.min.js"]
 rules:
   import/no-unresolved:
     - warn
